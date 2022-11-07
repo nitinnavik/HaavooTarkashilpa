@@ -1,11 +1,12 @@
 import {
-  StyleSheet,
-  Text,
-  View,
   Image,
   ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+
 import React from 'react';
 
 const SelectCity = () => {
@@ -24,21 +25,21 @@ const SelectCity = () => {
         <View style={styles.cityCard}>
           <Image
             style={styles.imageCard}
-            source={require('../../styles/icons/ernakulam.png')}
+            source={require('../assets/ernakulam.png')}
           />
           <Text>Ernakulam</Text>
         </View>
         <View style={styles.cityCard}>
           <Image
             style={styles.imageCard}
-            source={require('../../styles/icons/kozhikode.png')}
+            source={require('../assets/kozhikode.png')}
           />
           <Text>Kozhikode</Text>
         </View>
         <View style={styles.cityCard}>
           <Image
             style={styles.imageCard}
-            source={require('../../styles/icons/malappuram.png')}
+            source={require('../assets/malappuram.png')}
           />
           <Text>Malappuram</Text>
         </View>
@@ -47,14 +48,14 @@ const SelectCity = () => {
         <View style={styles.cityCard}>
           <Image
             style={styles.imageCard}
-            source={require('../../styles/icons/ernakulam.png')}
+            source={require('../assets/ernakulam.png')}
           />
           <Text>Thiruvananthpuram</Text>
         </View>
         <View style={styles.cityCard}>
           <Image
             style={styles.imageCard}
-            source={require('../../styles/icons/kozhikode.png')}
+            source={require('../assets/kozhikode.png')}
           />
           <Text>Thrisur</Text>
         </View>

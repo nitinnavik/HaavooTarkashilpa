@@ -1,13 +1,15 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+
 import React from 'react';
 
 const HaavooCityPage = () => {
   return (
     <View style={styles.mainHeader}>
       <Image
-        style={[styles.backArrow, {transform: [{rotate: '90deg'}]}]}
-        source={require('../../styles/icons/white-arrow-icon.png')}
+        style={styles.leftarrow}
+        source={require('../assets/leftarrow.png')}
       />
+
       <Text style={styles.searchText}>Search Your City or Location</Text>
     </View>
   );
@@ -29,5 +31,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 40,
     marginRight: 40,
+    color: 'white',
+    marginTop: 10,
+  },
+  leftarrow: {
+    height: 20,
+    width: 20,
+    color: 'white',
+    marginTop: 15,
   },
 });

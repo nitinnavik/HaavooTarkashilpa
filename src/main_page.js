@@ -1,12 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
+
+import HaavooHeader from './components/header';
 import React from 'react';
 import Search from './components/search';
-import HaavooHeader from './components/header';
 import Tabs from './components/tabs';
 
 const MainPage = () => {
   return (
-    <View>
+    <View style={styles.main}>
       <HaavooHeader />
       <Search />
       <Tabs />
@@ -16,4 +17,8 @@ const MainPage = () => {
 
 export default MainPage;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  main: {
+    backgroundColor: 'red',
+  },
+});

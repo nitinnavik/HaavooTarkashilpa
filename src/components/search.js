@@ -1,4 +1,5 @@
-import {Image, TextInput, View, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TextInput, View} from 'react-native';
+
 import React from 'react';
 
 const Search = () => {
@@ -16,7 +17,7 @@ const Search = () => {
       />
       <Image
         style={styles.searchIcon}
-        source={require('../../styles/icons/search-icon.png')}
+        source={require('../assets/search-icon.png')}
       />
     </View>
   );
@@ -26,8 +27,8 @@ const styles = StyleSheet.create({
   searchIcon: {
     alignSelf: 'center',
     marginRight: 20,
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
   },
   textInputView: {
     borderWidth: 1,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 5,
     fontSize: 20,
-    color: '#fff',
+    color: 'white',
   },
 });
 
