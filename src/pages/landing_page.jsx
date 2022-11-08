@@ -5,10 +5,13 @@ import React from 'react';
 import Search from '../components/search';
 import SelectCity from '../components/selectCity';
 
-const HaavooHome = () => {
+const HaavooHome = props => {
   return (
     <>
-      <HaavooCityPage />
+      <HaavooCityPage
+        condition={props.condition}
+        setCondition={props.setCondition}
+      />
       <Search />
       <ScrollView style={styles.scrollView}>
         <SelectCity />

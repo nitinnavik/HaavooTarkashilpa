@@ -2,13 +2,17 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import React from 'react';
 
-const HaavooCityPage = () => {
+const HaavooCityPage = props => {
   return (
-    <View style={styles.mainHeader}>
-      <Image
-        style={styles.leftarrow}
-        source={require('../assets/leftarrow.png')}
-      />
+    <View
+      style={styles.mainHeader}
+      onPress={() => props?.setCondition(!props?.condition)}>
+      <View>
+        <Image
+          style={styles.leftarrow}
+          source={require('../assets/leftarrow.png')}
+        />
+      </View>
 
       <Text style={styles.searchText}>Search Your City or Location</Text>
     </View>

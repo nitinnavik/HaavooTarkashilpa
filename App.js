@@ -6,25 +6,30 @@
  * @flow strict-local
  */
 
+import React, {useState} from 'react';
+
 import HaavooHome from './src/pages/landing_page';
 import Home from './src/pages/home';
 import LinearGradient from 'react-native-linear-gradient';
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  let condition = false;
+  const [condition, setCondition] = useState(false);
 
   return (
     <>
       <LinearGradient
         colors={['#7d0202', 'black']}
         style={styles.linearGradient}>
-        {condition ? <HaavooHome /> : <Home />}
+        {condition ? (
+          <HaavooHome condition={condition} setCondition={setCondition} />
+        ) : (
+          <Home condition={condition} setCondition={setCondition} />
+        )}
       </LinearGradient>
     </>
   );

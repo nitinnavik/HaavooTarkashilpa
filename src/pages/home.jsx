@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import React from 'react';
 
-const Home = () => {
+const Home = props => {
   return (
     <View style={styles.mainHeader}>
       <View style={styles.headermain}>
@@ -19,10 +19,12 @@ const Home = () => {
 
         <Text style={styles.searchText}>Home</Text>
       </View>
-      <Text style={{textAlign: 'center', marginTop: 20}}>
+      <Text
+        style={{textAlign: 'center', marginTop: 20}}
+        onPress={() => props?.setCondition(!props?.condition)}>
         <Text style={styles.cityText}>Select City</Text>
         <Image
-          style={styles.homeimg3}
+          style={[styles.homeimg3, {paddingLeft: 20}]}
           source={require('../assets/downarrow.png')}
         />
       </Text>
@@ -50,6 +52,7 @@ const styles = StyleSheet.create({
   homeimg3: {
     width: 20,
     height: 20,
+    marginLeft: 20,
   },
   searchText: {
     fontSize: 22,
@@ -63,8 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: 'white',
-    textAlign: 'center',
-    flex: 1,
   },
   headermain: {
     flexDirection: 'row',
