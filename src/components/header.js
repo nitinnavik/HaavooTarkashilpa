@@ -6,10 +6,7 @@ const HaavooHeader = () => {
   return (
     <View>
       <View style={styles.mainHeader}>
-        <Image
-          style={[styles.backArrow, {transform: [{rotate: '90deg'}]}]}
-          source={require('../assets/white-arrow-icon.png')}
-        />
+        <Image source={require('../assets/leftarrow.png')} />
 
         <View style={styles.mainSearch}>
           <Text style={styles.textHome}> Search </Text>

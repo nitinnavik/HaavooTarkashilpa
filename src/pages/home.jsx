@@ -1,33 +1,43 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 import React from 'react';
+import Search from '../components/search';
 
 const Home = props => {
   return (
     <View style={styles.mainHeader}>
       <View style={styles.headermain}>
-        <View style={{flexDirection: 'row'}}>
-          <Image
-            style={styles.homeimg1}
-            source={require('../assets/burger.png')}
-          />
-          <Image
-            style={styles.homeimg2}
-            source={require('../assets/app_icon.png')}
-          />
+        <View
+          style={styles.mainHeader}
+          onPress={() => props?.setCondition(!props?.condition)}>
+          <View>
+            <Image
+              style={styles.leftarrow}
+              source={require('../assets/leftarrow.png')}
+            />
+          </View>
         </View>
-
-        <Text style={styles.searchText}>Home</Text>
+        <View style={{flex: 2, paddingLeft: 20}}>
+          <Text style={[styles.cityText, {fontSize: 22}]}>Search</Text>
+        </View>
       </View>
-      <Text
-        style={{textAlign: 'center', marginTop: 20}}
-        onPress={() => props?.setCondition(!props?.condition)}>
-        <Text style={styles.cityText}>Select City</Text>
+      <View
+        onPress={() => props?.setCondition(!props?.condition)}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 20,
+        }}>
+        <Text style={styles.cityText}>Ernakulam</Text>
         <Image
-          style={[styles.homeimg3, {paddingLeft: 20}]}
+          style={styles.homeimg3}
           source={require('../assets/downarrow.png')}
         />
-      </Text>
+      </View>
+      <View>
+        <Search />
+      </View>
     </View>
   );
 };
@@ -36,32 +46,22 @@ export default Home;
 
 const styles = StyleSheet.create({
   mainHeader: {
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     flex: 1,
   },
-  homeimg1: {
-    width: 30,
-    height: 30,
-    marginTop: 5,
-  },
-  homeimg2: {
-    width: 45,
-    height: 40,
-    marginLeft: 20,
-  },
+
   homeimg3: {
     width: 20,
     height: 20,
-    marginLeft: 20,
+    marginTop: 5,
+    marginLeft: 10,
   },
-  searchText: {
-    fontSize: 22,
-    fontWeight: '600',
+  leftarrow: {
+    height: 20,
+    width: 20,
     color: 'white',
-    textAlign: 'center',
-    flex: 1,
-    marginLeft: -95,
   },
+
   cityText: {
     fontSize: 18,
     fontWeight: '600',
@@ -69,8 +69,7 @@ const styles = StyleSheet.create({
   },
   headermain: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
