@@ -12,8 +12,6 @@ const Search = () => {
         underlineColor="transparent"
         returnKeyType={'done'}
         selectionColor="black"
-        // value={searchValue}
-        // onChangeText={text => searchFunction(text)}
       />
       <Image
         style={styles.searchIcon}
