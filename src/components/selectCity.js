@@ -63,18 +63,14 @@ const SelectCity = () => {
   };
 
   return (
-    <View>
+    <View style={{}}>
       <Text style={styles.mainText}> Popular Cities </Text>
       <View style={styles.mainCard}>
         {cardList &&
           cardList.map(el => {
             return (
-              <View style={{width: '33%', minHeight: 120}}>
-                <SmallCards
-                  key={el.id}
-                  name={el.name}
-                  src="../assets/ernakulam.png"
-                />
+              <View style={styles.cardmaindiv} key={el.id}>
+                <SmallCards name={el.name} src="../assets/ernakulam.png" />
               </View>
             );
           })}
@@ -112,7 +108,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#666666',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderColor: 'gray',
     borderRadius: 10,
     padding: 10,
     margin: 5,
@@ -134,5 +131,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 5,
     color: 'white',
+  },
+  cardmaindiv: {
+    minHeight: 150,
+    width: '33%',
   },
 });

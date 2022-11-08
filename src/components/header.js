@@ -1,4 +1,5 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+
 import React from 'react';
 
 const HaavooHeader = () => {
@@ -7,7 +8,7 @@ const HaavooHeader = () => {
       <View style={styles.mainHeader}>
         <Image
           style={[styles.backArrow, {transform: [{rotate: '90deg'}]}]}
-          source={require('../../styles/icons/white-arrow-icon.png')}
+          source={require('../assets/white-arrow-icon.png')}
         />
 
         <View style={styles.mainSearch}>

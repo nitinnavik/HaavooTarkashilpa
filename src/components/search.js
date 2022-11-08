@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     margin: 18,
     overflow: 'hidden',
-    position: 'relative',
   },
   textInput: {
     flex: 1,

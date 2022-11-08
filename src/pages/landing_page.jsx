@@ -1,20 +1,19 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
-import HaavooCityPage from './components/haavoocitypage';
-import LinearGradient from 'react-native-linear-gradient';
+import HaavooCityPage from '../components/haavoocitypage';
 import React from 'react';
-import Search from './components/search';
-import SelectCity from './components/selectCity';
+import Search from '../components/search';
+import SelectCity from '../components/selectCity';
 
 const HaavooHome = () => {
   return (
-    <LinearGradient colors={['#7d0202', 'black']} style={styles.linearGradient}>
+    <>
+      <HaavooCityPage />
+      <Search />
       <ScrollView style={styles.scrollView}>
-        <HaavooCityPage />
-        <Search />
         <SelectCity />
       </ScrollView>
-    </LinearGradient>
+    </>
   );
 };
 

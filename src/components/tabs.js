@@ -14,10 +14,10 @@ const Tabs = () => {
         <View style={styles.cardParent}>
           <View style={styles.flexMain}>
             <View>
-              <Image
+              {/* <Image
                 style={styles.image}
                 source={require('../../styles/images/4.jpg')}
-              />
+              /> */}
             </View>
             <View>
               <Text style={styles.whiteText}> Fitness Test</Text>
