@@ -87,7 +87,6 @@ const SelectCity = () => {
     </View>
   );
 };
-
 export default SelectCity;
 
 const styles = StyleSheet.create({

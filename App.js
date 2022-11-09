@@ -1,40 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, {useState} from 'react';
-
-import HaavooHome from './src/pages/landing_page';
-import Home from './src/pages/home';
+import BusinessDealsPage from './src/pages/main_page';
 import LinearGradient from 'react-native-linear-gradient';
-import {NavigationContainer} from '@react-navigation/native';
+import SelectCityPage from './src/pages/landing_page';
 import {StyleSheet} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
+import {useState} from 'react';
 
 const App = () => {
-  const [condition, setCondition] = useState(false);
+  const [condition, setCondition] = useState(true);
 
   return (
-    <>
-      <LinearGradient
-        colors={['#7d0202', 'black']}
-        style={styles.linearGradient}>
-        {condition ? (
-          <HaavooHome condition={condition} setCondition={setCondition} />
-        ) : (
-          <Home condition={condition} setCondition={setCondition} />
-        )}
-      </LinearGradient>
-    </>
+    <LinearGradient colors={['#7d0202', 'black']} style={styles.linearGradient}>
+      {condition ? (
+        <BusinessDealsPage condition={condition} setCondition={setCondition} />
+      ) : (
+        <SelectCityPage condition={condition} setCondition={setCondition} />
+      )}
+    </LinearGradient>
   );
 };
-
 export default App;
 
 const styles = StyleSheet.create({

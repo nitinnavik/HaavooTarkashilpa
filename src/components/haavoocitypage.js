@@ -18,7 +18,6 @@ const HaavooCityPage = props => {
     </View>
   );
 };
-
 export default HaavooCityPage;
 
 const styles = StyleSheet.create({

@@ -20,6 +20,7 @@ const Search = () => {
     </View>
   );
 };
+export default Search;
 
 const styles = StyleSheet.create({
   searchIcon: {
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
     overflow: 'hidden',
   },
   textInput: {
@@ -46,5 +46,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-export default Search;

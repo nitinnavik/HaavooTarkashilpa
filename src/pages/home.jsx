@@ -17,8 +17,18 @@ const Home = props => {
             />
           </View>
         </View>
-        <View style={{flex: 2, paddingLeft: 20}}>
-          <Text style={[styles.cityText, {fontSize: 22}]}>Search</Text>
+        <View style={{paddingLeft: 20, flex: 1}}>
+          <Text
+            style={[
+              styles.cityText,
+              {
+                fontSize: 22,
+                textAlign: 'center',
+                marginLeft: -60,
+              },
+            ]}>
+            Search
+          </Text>
         </View>
       </View>
       <View
@@ -35,19 +45,17 @@ const Home = props => {
           source={require('../assets/downarrow.png')}
         />
       </View>
-      <View>
+      <View style={{marginVertical: 20}}>
         <Search />
       </View>
     </View>
   );
 };
-
 export default Home;
 
 const styles = StyleSheet.create({
   mainHeader: {
     marginHorizontal: 10,
-    flex: 1,
   },
 
   homeimg3: {

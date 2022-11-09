@@ -5,22 +5,23 @@ import React from 'react';
 import Search from '../components/search';
 import SelectCity from '../components/selectCity';
 
-const HaavooHome = props => {
+const LandingPage = props => {
   return (
     <>
       <HaavooCityPage
         condition={props.condition}
         setCondition={props.setCondition}
       />
-      <Search />
+      <View style={{margin: 20}}>
+        <Search />
+      </View>
       <ScrollView style={styles.scrollView}>
         <SelectCity />
       </ScrollView>
     </>
   );
 };
-
-export default HaavooHome;
+export default LandingPage;
 
 const styles = StyleSheet.create({
   container: {

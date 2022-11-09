@@ -1,24 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import HaavooHeader from '../components/header';
+import Home from './home';
+import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
-import Search from '../components/search';
-import Tabs from '../components/tabs';
+import TabSwitcher from './../components/tabswitcher';
 
-const MainPage = () => {
+const MainPage = props => {
   return (
-    <View style={styles.main}>
-      <HaavooHeader />
-      <Search />
-      <Tabs />
+    <View>
+      <Home />
+      <TabSwitcher />
     </View>
   );
 };
-
 export default MainPage;
 
 const styles = StyleSheet.create({
-  main: {
-    backgroundColor: 'red',
+  linearGradient: {
+    height: '100%',
   },
 });
