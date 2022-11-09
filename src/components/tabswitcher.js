@@ -6,107 +6,33 @@ import {
   Text,
   View,
 } from 'react-native';
+import React, {useState} from 'react';
 
-import React from 'react';
+import BusinessCards from './business_cards';
+import DealsCards from './deals_card';
 
 const TabSwitcher = () => {
-  const DATA = [
-    {
-      id: 1,
-      title: 'First Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description:
-        'Service available for or business, leisure, or medical reasons -Taxi service with experienced drive',
-      src: '../assets/photo.jpg',
-    },
-    {
-      id: 2,
-      title: 'Second Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description:
-        'HOME TUITION IN THRISSUR- ICSE, CBSE, STATE BOARD, NIOS- ALL SUBJECTS',
-      src: '../assets/photo.jpg',
-    },
-    {
-      id: 3,
-      title: 'Third Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description: 'House of Highgine, Mask and other Highgine Products',
-      src: '../assets/photo.jpg',
-    },
-    {
-      id: 4,
-      title: 'Fourth Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description: 'House of Highgine, Mask and other Highgine Products',
-      src: '../assets/photo.jpg',
-    },
-    {
-      id: 5,
-      title: 'Fifth Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description: 'House of Highgine, Mask and other Highgine Products',
-      src: '../assets/photo.jpg',
-    },
-    {
-      id: 6,
-      title: 'Sixth Item',
-      category: 'Tours/Travels',
-      area: 'Vennala',
-      description: 'House of Highgine, Mask and other Highgine Products',
-      src: '../assets/photo.jpg',
-    },
-  ];
-  const SmallCards = props => {
-    console.log(props.item);
-    return (
-      <View style={styles.cityCard} key={props.item.id}>
-        <View>
-          <Image
-            style={styles.imageCard}
-            source={require('../assets/photo.jpg')}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={{marginLeft: 30, width: '100%'}}>
-          <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
-            {props?.item?.title}
-          </Text>
-          <Text style={{color: '#7f7e7e'}}>
-            Category : {props?.item?.title}
-          </Text>
-          <Text style={{color: '#7f7e7e'}}>Area : {props?.item?.title}</Text>
-          <Text
-            style={{
-              color: '#7f7e7e',
-              width: '56%',
-            }}>
-            {props?.item?.description}
-          </Text>
-        </View>
-      </View>
-    );
-  };
+  const [tabSwitch, setTabSwitch] = useState(true);
 
   return (
-    <>
+    <View style={{flexDirection: 'column', flex: 1}}>
       <View style={styles.tabsMain}>
-        <Text style={styles.tabSection}>Business</Text>
-        <Text style={styles.tabSection}>Deals</Text>
+        <Text
+          style={tabSwitch === true ? styles.yellowBg : styles.tabSection}
+          onPress={() => setTabSwitch(true)}>
+          Business
+        </Text>
+        <Text
+          style={tabSwitch === false ? styles.yellowBg : styles.tabSection}
+          onPress={() => setTabSwitch(false)}>
+          Deals
+        </Text>
       </View>
-      <View style={{marginHorizontal: 10, marginVertical: 20}}>
-        <FlatList
-          data={DATA}
-          renderItem={SmallCards}
-          keyExtractor={item => item.id}
-        />
+      <View style={{flex: 1}}>
+        {tabSwitch && <BusinessCards />}
+        {tabSwitch === false && <DealsCards />}
       </View>
-    </>
+    </View>
   );
 };
 export default TabSwitcher;
@@ -117,18 +43,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginHorizontal: 10,
+    flex: 0,
   },
   tabSection: {
     borderColor: '#fff',
     borderWidth: 1,
-    padding: 10,
-    marginHorizontal: 5,
-    color: '#fff',
-    fontWeight: '700',
+    padding: 8,
+    margin: 2,
+    color: '#000',
+    fontWeight: '600',
     fontSize: 20,
     borderRadius: 50,
-    height: 50,
-    width: '48%',
+    flex: 1,
+    textAlign: 'center',
+    backgroundColor: '#fff',
+  },
+  noDeals: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+  },
+  yellowBg: {
+    backgroundColor: '#FAA41A',
+    borderColor: '#FAA41A',
+    borderWidth: 1,
+    padding: 8,
+    margin: 2,
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 20,
+    borderRadius: 50,
+    flex: 1,
     textAlign: 'center',
   },
   cityCard: {

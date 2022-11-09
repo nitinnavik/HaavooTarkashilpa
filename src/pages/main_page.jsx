@@ -7,10 +7,10 @@ import TabSwitcher from './../components/tabswitcher';
 
 const MainPage = props => {
   return (
-    <View>
+    <>
       <Home />
       <TabSwitcher />
-    </View>
+    </>
   );
 };
 export default MainPage;

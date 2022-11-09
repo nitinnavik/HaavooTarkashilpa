@@ -8,28 +8,25 @@ const Home = props => {
     <View style={styles.mainHeader}>
       <View style={styles.headermain}>
         <View
-          style={styles.mainHeader}
+          style={{flex: 1}}
           onPress={() => props?.setCondition(!props?.condition)}>
-          <View>
-            <Image
-              style={styles.leftarrow}
-              source={require('../assets/leftarrow.png')}
-            />
-          </View>
+          <Image
+            style={styles.leftarrow}
+            source={require('../assets/leftarrow.png')}
+          />
         </View>
-        <View style={{paddingLeft: 20, flex: 1}}>
-          <Text
-            style={[
-              styles.cityText,
-              {
-                fontSize: 22,
-                textAlign: 'center',
-                marginLeft: -60,
-              },
-            ]}>
-            Search
-          </Text>
-        </View>
+        <Text
+          style={[
+            styles.cityText,
+            {
+              fontSize: 22,
+              textAlign: 'center',
+              flex: 1,
+            },
+          ]}>
+          Search
+        </Text>
+        <View style={{flex: 1}}></View>
       </View>
       <View
         onPress={() => props?.setCondition(!props?.condition)}
@@ -45,7 +42,7 @@ const Home = props => {
           source={require('../assets/downarrow.png')}
         />
       </View>
-      <View style={{marginVertical: 20}}>
+      <View style={{marginVertical: 20, marginHorizontal: 15}}>
         <Search />
       </View>
     </View>
@@ -54,10 +51,6 @@ const Home = props => {
 export default Home;
 
 const styles = StyleSheet.create({
-  mainHeader: {
-    marginHorizontal: 10,
-  },
-
   homeimg3: {
     width: 20,
     height: 20,
@@ -77,7 +70,8 @@ const styles = StyleSheet.create({
   },
   headermain: {
     flexDirection: 'row',
-    textAlign: 'center',
     marginTop: 20,
+    marginHorizontal: 15,
+    justifyContent: 'space-evenly',
   },
 });

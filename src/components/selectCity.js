@@ -4,6 +4,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -69,9 +70,12 @@ const SelectCity = () => {
         {cardList &&
           cardList.map(el => {
             return (
-              <View style={styles.cardmaindiv} key={el.id}>
+              <TouchableOpacity
+                onPress={() => alert('nitin')}
+                style={styles.cardmaindiv}
+                key={el.id}>
                 <SmallCards name={el.name} src="../assets/ernakulam.png" />
-              </View>
+              </TouchableOpacity>
             );
           })}
       </View>
