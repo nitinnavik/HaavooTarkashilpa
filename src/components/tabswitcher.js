@@ -1,12 +1,5 @@
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';

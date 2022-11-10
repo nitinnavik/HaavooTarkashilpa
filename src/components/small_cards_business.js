@@ -1,7 +1,6 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 export const SmallCardBusiness = props => {
-  console.log(props.item);
   return (
     <View style={styles.cityCard} key={props.item.id}>
       <View>
