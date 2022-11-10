@@ -1,5 +1,6 @@
 import BusinessDealsPage from './src/pages/main_page';
 import LinearGradient from 'react-native-linear-gradient';
+import React from 'react';
 import SelectCityPage from './src/pages/landing_page';
 import {StyleSheet} from 'react-native';
 import {useState} from 'react';

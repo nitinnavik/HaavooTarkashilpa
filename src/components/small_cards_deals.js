@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     flexDirection: 'row',
     flex: 1,
+    marginHorizontal: 5,
   },
   imageCard: {
     width: 100,

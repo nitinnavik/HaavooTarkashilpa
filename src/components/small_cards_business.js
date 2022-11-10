@@ -1,8 +1,11 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 export const SmallCardBusiness = props => {
+  const regex = /(<([^>]+)>)/gi;
+  const temp = props?.item?.description.replace(regex, '');
+  var desc = temp.replace(/&nbsp;/g, '');
   return (
-    <View style={styles.cityCard} key={props.item.id}>
+    <View style={styles.cityCard} key={props?.item?.id}>
       <View>
         <Image
           source={require('../assets/photo.jpg')}
@@ -11,15 +14,19 @@ export const SmallCardBusiness = props => {
       </View>
       <View style={{marginLeft: 15, width: '100%', flex: 1}}>
         <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
-          {props?.item?.title}
+          {props?.item?.business_name}
         </Text>
-        <Text style={{color: '#7f7e7e'}}>Category : {props?.item?.title}</Text>
-        <Text style={{color: '#7f7e7e'}}>Area : {props?.item?.title}</Text>
+        <Text style={{color: '#7f7e7e'}}>
+          Category : {props?.item?.categories[0]?.name}
+        </Text>
+        <Text style={{color: '#7f7e7e'}}>
+          Area : {props?.item?.areas[0]?.name}
+        </Text>
         <Text
           style={{
             color: '#7f7e7e',
           }}>
-          {props?.item?.description}
+          {desc}
         </Text>
       </View>
     </View>
@@ -34,6 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     marginVertical: 10,
+    marginHorizontal: 5,
     flexDirection: 'row',
     flex: 1,
   },
