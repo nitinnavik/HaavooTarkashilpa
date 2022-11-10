@@ -4,13 +4,11 @@ export const SmallCardBusiness = props => {
   const regex = /(<([^>]+)>)/gi;
   const temp = props?.item?.description.replace(regex, '');
   var desc = temp.replace(/&nbsp;/g, '');
+  let imgsrc = 'require(' + props?.item?.thumb_image + ')';
   return (
     <View style={styles.cityCard} key={props?.item?.id}>
       <View>
-        <Image
-          source={require('../assets/photo.jpg')}
-          style={styles.imageCard}
-        />
+        <Image source={imgsrc} style={styles.imageCard} />
       </View>
       <View style={{marginLeft: 15, width: '100%', flex: 1}}>
         <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>

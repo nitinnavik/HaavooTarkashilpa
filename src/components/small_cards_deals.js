@@ -1,12 +1,15 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 export const SmallCardDeals = props => {
+  // let imgsrc = `uri:${props?.item?.thumb_image}`;
+  // const backgroundImage = `require(` props?.item?.thumb_image `)`;
   return (
-    <View style={styles.cityCard} key={props.item.id}>
+    <View style={styles.cityCard} key={props?.item?.id}>
       <View>
         <Image
           style={styles.imageCard}
-          source={require('../assets/photo.jpg')}
+          // source={require(`${props?.item?.thumb_image}`)}
+          source={''}
         />
       </View>
       <View style={{marginLeft: 15, flex: 1}}>
@@ -16,8 +19,12 @@ export const SmallCardDeals = props => {
         <Text style={{color: 'green'}}>
           Offer ends on {props?.item?.endingDate}
         </Text>
-        <Text style={{color: 'white'}}>{props?.item?.brand}</Text>
-        <Text style={{color: 'white'}}>{props?.item?.category}</Text>
+        <Text style={{color: '#7f7e7e'}}>
+          {props?.item?.business?.businessName}
+        </Text>
+        <Text style={{color: '#7f7e7e'}}>
+          {props?.item?.categories[0]?.name}
+        </Text>
       </View>
     </View>
   );

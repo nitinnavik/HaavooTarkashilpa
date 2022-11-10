@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';
@@ -24,6 +24,36 @@ const TabSwitcher = () => {
       <View style={{flex: 1}}>
         {tabSwitch && <BusinessCards />}
         {tabSwitch === false && <DealsCards />}
+      </View>
+      <View style={styles.filterbtn}>
+        <TouchableOpacity>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 15,
+              fontWeight: 'bold',
+              minWidth: '50%',
+              textAlign: 'center',
+              marginVertical: 20,
+              marginTop: 0,
+            }}>
+            Sort By
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 15,
+              fontWeight: 'bold',
+              minWidth: '50%',
+              textAlign: 'center',
+              marginVertical: 20,
+              marginTop: 0,
+            }}>
+            Filter
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -75,11 +105,17 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 10,
     padding: 20,
-    marginVertical: 10,
     flexDirection: 'row',
   },
   imageCard: {
     height: 120,
     width: 120,
+  },
+  filterbtn: {
+    backgroundColor: '#232222',
+    textAlign: 'center',
+    flexDirection: 'row',
+    marginTop: -20,
+    paddingTop: 15,
   },
 });
