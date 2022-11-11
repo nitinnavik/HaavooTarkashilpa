@@ -5,15 +5,18 @@ import Loader from './loader';
 import {SmallCardBusiness} from './small_cards_business';
 import axios from 'react-native-axios';
 
-const BusinessCards = () => {
+const BusinessCards = (props) => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchBusiness = async () => {
+    let url = 'https://admin.haavoo.com/api/business?city=kozhikode&area=&search_query=&page=1&type=&category=&sort=';
+    if(props?.search){
+      url = `https://admin.haavoo.com/api/business?city=kozhikode&area=&search_query=${props?.search}&page=1&type=&category=&sort=`;
+    }
+    // alert(url)
     await axios
-      .get(
-        'https://admin.haavoo.com/api/business?city=ernakulam&area=&search_query=&page=1&type=&category=&sort=',
-      )
+      .get(url)
       .then(function (response) {
         // alert(JSON.stringify(response.data));
         setData(response?.data?.data?.data);

@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Search from '../components/search';
 
-const Home = props => {
+const Header = props => {
   return (
     <View style={styles.mainHeader}>
       <View style={styles.headermain}>
@@ -28,27 +28,12 @@ const Home = props => {
         </Text>
         <View style={{flex: 1}}></View>
       </View>
-      <View
-        onPress={() => props?.setCondition(!props?.condition)}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: 20,
-        }}>
-        <Text style={styles.cityText}>Ernakulam</Text>
-        <Image
-          style={styles.homeimg3}
-          source={require('../assets/downarrow.png')}
-        />
-      </View>
-      <View style={{marginVertical: 20, marginHorizontal: 15}}>
-        <Search />
-      </View>
+     
+     
     </View>
   );
 };
-export default Home;
+export default Header;
 
 const styles = StyleSheet.create({
   homeimg3: {

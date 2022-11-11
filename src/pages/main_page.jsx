@@ -1,13 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import Home from './home';
+import Header from './header';
 import React from 'react';
 import TabSwitcher from './../components/tabswitcher';
 
 const MainPage = props => {
   return (
     <>
-      <Home />
+      <Header />
       <TabSwitcher />
     </>
   );

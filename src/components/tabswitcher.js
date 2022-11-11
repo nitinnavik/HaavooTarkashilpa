@@ -1,14 +1,32 @@
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';
+import Search from './search';
 
 const TabSwitcher = () => {
   const [tabSwitch, setTabSwitch] = useState(true);
-
+  const [search,setSearch] = useState('');
+  
   return (
     <View style={{flexDirection: 'column', flex: 1}}>
+       <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 20,
+        }}>
+        <Text style={styles.cityText}>Ernakulam</Text>
+        <Image
+          style={styles.homeimg3}
+          source={require('../assets/downarrow.png')}
+        />
+      </View>
+       <View style={{marginVertical: 20, marginHorizontal: 15}}>
+        <Search setSearch={setSearch} search={search} />
+      </View>
       <View style={styles.tabsMain}>
         <Text
           style={tabSwitch === true ? styles.yellowBg : styles.tabSection}
@@ -22,8 +40,8 @@ const TabSwitcher = () => {
         </Text>
       </View>
       <View style={{flex: 1}}>
-        {tabSwitch && <BusinessCards />}
-        {tabSwitch === false && <DealsCards />}
+        {tabSwitch && <BusinessCards search={search} />}
+        {tabSwitch === false && <DealsCards search={search} />}
       </View>
       <View style={styles.filterbtn}>
         <TouchableOpacity>
@@ -117,5 +135,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: -20,
     paddingTop: 15,
+  },
+  homeimg3: {
+    width: 20,
+    height: 20,
+    marginTop: 5,
+    marginLeft: 10,
+  },
+   cityText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'white',
   },
 });
