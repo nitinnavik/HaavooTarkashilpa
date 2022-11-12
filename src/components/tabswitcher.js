@@ -1,16 +1,19 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';
 import Search from './search';
 
 const TabSwitcher = () => {
+  const city = useStoreState((state) => state.city);
+  // alert(JSON.stringify(city))
+  const setCity = useStoreActions((actions) => actions.setCity);
+ 
   const [tabSwitch, setTabSwitch] = useState(true);
-  const [search,setSearch] = useState('');
-  
   return (
-    <View style={{flexDirection: 'column', flex: 1}}>
+    <View style={{flexDirection: 'column', flex: 1}}> 
        <View
         style={{
           flexDirection: 'row',
@@ -25,7 +28,7 @@ const TabSwitcher = () => {
         />
       </View>
        <View style={{marginVertical: 20, marginHorizontal: 15}}>
-        <Search setSearch={setSearch} search={search} />
+        <Search />
       </View>
       <View style={styles.tabsMain}>
         <Text
@@ -40,8 +43,8 @@ const TabSwitcher = () => {
         </Text>
       </View>
       <View style={{flex: 1}}>
-        {tabSwitch && <BusinessCards search={search} />}
-        {tabSwitch === false && <DealsCards search={search} />}
+        {tabSwitch && <BusinessCards />}
+        {tabSwitch === false && <DealsCards />}
       </View>
       <View style={styles.filterbtn}>
         <TouchableOpacity>

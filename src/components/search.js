@@ -1,8 +1,14 @@
 import { Image, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import React,{useState} from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
-import React from 'react';
-
-const Search = ({search,setSearch}) => {
+const Search = () => {
+  const [query,setQuery] = useState('');
+   const searchQuery = useStoreState((state) => state.searchQuery);
+  const setSearchQuery = useStoreActions((actions) => actions.setSearchQuery);
+  if(query === ""){
+    setSearchQuery("")
+  }
   return (
     <View style={styles.textInputView}>
       <TextInput
@@ -12,9 +18,9 @@ const Search = ({search,setSearch}) => {
         underlineColor="transparent"
         returnKeyType={'done'}
         selectionColor="black"
-        onChangeText={(text)=>setSearch(text)}
+        onChangeText={(text)=>setQuery(text)}
       />
-      <TouchableOpacity >
+      <TouchableOpacity onPress={()=>setSearchQuery(query)}>
       <Image
         style={styles.searchIcon}
         source={require('../assets/search-icon.png')}
