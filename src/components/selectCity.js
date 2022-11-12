@@ -91,7 +91,8 @@ const SelectCity = () => {
             if(el.is_popular === 1){
               return (
               <TouchableOpacity
-                onPress={() => {setCity(el.name)
+                onPress={() => {
+                setCity(el.name)
                 navigation.navigate('MainPage')
                 }}
                 style={styles.cardmaindiv}

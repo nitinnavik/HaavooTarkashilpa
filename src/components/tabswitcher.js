@@ -11,7 +11,6 @@ const TabSwitcher = () => {
   const navigation = useNavigation();
   
   const city = useStoreState((state) => state.city);
-  // alert(JSON.stringify(city))
   const setCity = useStoreActions((actions) => actions.setCity);
  
   const [tabSwitch, setTabSwitch] = useState(true);
