@@ -5,8 +5,11 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';
 import Search from './search';
+import { useNavigation } from '@react-navigation/native';
 
 const TabSwitcher = () => {
+  const navigation = useNavigation();
+  
   const city = useStoreState((state) => state.city);
   // alert(JSON.stringify(city))
   const setCity = useStoreActions((actions) => actions.setCity);
@@ -14,19 +17,23 @@ const TabSwitcher = () => {
   const [tabSwitch, setTabSwitch] = useState(true);
   return (
     <View style={{flexDirection: 'column', flex: 1}}> 
-       <View
+    
+       <TouchableOpacity
+       onPress={() => {
+                navigation.navigate('LandingPage', { name: 'Jane' })
+                }}
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: 20,
         }}>
-        <Text style={styles.cityText}>Ernakulam</Text>
+        <Text style={styles.cityText}>{city}</Text>
         <Image
           style={styles.homeimg3}
           source={require('../assets/downarrow.png')}
         />
-      </View>
+      </TouchableOpacity>
        <View style={{marginVertical: 20, marginHorizontal: 15}}>
         <Search />
       </View>

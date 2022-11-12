@@ -7,21 +7,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
-import React from 'react';
+import axios from 'react-native-axios';
+import { useNavigation } from '@react-navigation/native';
 
+const SmallCards = props => {
+    return (
+      <View style={styles.cityCard}>
+        <Image
+          style={styles.imageCard}
+          source={require('../assets/ernakulam.png')}
+        />
+        <Text style={{color: 'white'}}>{props.name}</Text>
+      </View>
+    );
+  };
+  
 const SelectCity = () => {
-  var citiesArray = [
-    'Alappuzha',
-    'Idukki',
-    'Kannur',
-    'Kasargod',
-    'kollam',
-    'kottayam',
-    'palakkad',
-    'pathanamthitta',
-    'wayanad',
-  ];
+  const city = useStoreActions((actions) => actions.city);
+
+  const navigation = useNavigation();
+  //  const city = useStoreState((state) => state.city);
+  const setCity = useStoreActions((actions) => actions.setCity);
+  var [citiesArray,setCityArray] = useState();
+        // alert(JSON.stringify(citiesArray));
 
   let cardList = [
     {
@@ -51,41 +62,60 @@ const SelectCity = () => {
     },
   ];
 
-  const SmallCards = props => {
-    return (
-      <View style={styles.cityCard}>
-        <Image
-          style={styles.imageCard}
-          source={require('../assets/ernakulam.png')}
-        />
-        <Text style={{color: 'white'}}>{props.name}</Text>
-      </View>
-    );
+
+  
+   const fetchCity = () => {
+    let url = `https://admin.haavoo.com/api/city`;
+     axios
+      .get(url)
+      .then(function (response) {
+        // alert(JSON.stringify(response));
+        setCityArray(response?.data?.data)
+        })
+      .catch(function (error) {
+        alert(error.message);
+      });
   };
+  // alert(JSON.stringify(data));
+
+  useEffect(() => {
+    fetchCity();
+  }, []);
 
   return (
     <View style={{}}>
       <Text style={styles.mainText}> Popular Cities </Text>
       <View style={styles.mainCard}>
-        {cardList &&
-          cardList.map(el => {
-            return (
+        { citiesArray&&
+          citiesArray.map(el => {
+            if(el.is_popular === 1){
+              return (
               <TouchableOpacity
-                onPress={() => alert('nitin')}
+                onPress={() => {setCity(el.name)
+                navigation.navigate('MainPage')
+                }}
                 style={styles.cardmaindiv}
                 key={el.id}>
                 <SmallCards name={el.name} src="../assets/ernakulam.png" />
               </TouchableOpacity>
             );
+            }
+            
           })}
       </View>
 
       <View style={styles.otherCities}>
         <Text style={styles.otherCitiesText}> Other Cities </Text>
-        {citiesArray.map((item, key) => (
+        {citiesArray?.map((item, key) => (
+          <TouchableOpacity
+                onPress={() => {setCity(item?.name)
+                navigation.navigate('MainPage')
+                }}
+                key={key}>
           <Text key={key} style={styles.TextStyle}>
-            {item}
+            {item?.name}
           </Text>
+          </TouchableOpacity>
         ))}
       </View>
     </View>

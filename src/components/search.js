@@ -6,9 +6,7 @@ const Search = () => {
   const [query,setQuery] = useState('');
    const searchQuery = useStoreState((state) => state.searchQuery);
   const setSearchQuery = useStoreActions((actions) => actions.setSearchQuery);
-  if(query === ""){
-    setSearchQuery("")
-  }
+  
   return (
     <View style={styles.textInputView}>
       <TextInput

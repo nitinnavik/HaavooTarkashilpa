@@ -1,13 +1,25 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import HaavooCityPage from '../components/haavoocitypage';
+import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
 import Search from '../components/search';
 import SelectCity from '../components/selectCity';
+import { useNavigation } from '@react-navigation/native';
+import { useStoreActions } from 'easy-peasy';
 
 const LandingPage = props => {
+  const navigation = useNavigation();
+
+  const city = useStoreActions((actions) => actions.city);
+
+  if(city){
+    navigation.navigate('MainPage')
+  }
+
   return (
-    <>
+       <LinearGradient colors={['#7d0202', 'black']} style={styles.linearGradient}>
+
       <HaavooCityPage
         condition={props.condition}
         setCondition={props.setCondition}
@@ -16,9 +28,9 @@ const LandingPage = props => {
         <Search />
       </View>
       <ScrollView style={styles.scrollView}>
-        <SelectCity />
+        <SelectCity props={props.navigation} />
       </ScrollView>
-    </>
+         </LinearGradient>
   );
 };
 export default LandingPage;

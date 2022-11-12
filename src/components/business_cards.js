@@ -1,24 +1,29 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 import { ListEmptyView } from './nodatafound';
 import Loader from './loader';
 import {SmallCardBusiness} from './small_cards_business';
 import axios from 'react-native-axios';
-import { useStoreState } from 'easy-peasy';
 
 const BusinessCards = () => {
+  let city = useStoreActions((actions) => actions.city);
+  if(!city){
+      city=''
+    }
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
    const searchQuery = useStoreState((state) => state.searchQuery);
+  //  alert(JSON.stringify(searchQuery))
   const fetchBusiness = async () => {
     let url;
-    if(searchQuery === null || searchQuery === ""){
-      url = `https://admin.haavoo.com/api/business?city=kozhikode&area=&search_query=&page=1&type=&category=&sort=`;
+    if(!searchQuery === null || !searchQuery === "" ){
+      url = `https://admin.haavoo.com/api/business?city=${city}&area=&search_query=&page=1&type=&category=&sort=`;
     }else{
-           url = `https://admin.haavoo.com/api/business?city=kozhikode&area=&search_query=${searchQuery}&page=1&type=&category=&sort=`;
+           url = `https://admin.haavoo.com/api/business?city=${city}&area=&search_query=${searchQuery}&page=1&type=&category=&sort=`;
     }
-    // alert(JSON.stringify(url))
+    alert(JSON.stringify(url))
     await axios
       .get(url)
       .then(function (response) {
@@ -36,6 +41,7 @@ const BusinessCards = () => {
   useEffect(() => {
     fetchBusiness();
   }, [searchQuery]);
+  
   return (
     <View style={{flex: 1}}>
       {isLoading ? (
