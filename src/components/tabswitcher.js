@@ -17,11 +17,20 @@ import SortByDialog from '../dialogs/sortby_dialog';
 import {useNavigation} from '@react-navigation/native';
 
 const TabSwitcher = () => {
+  let filterObject = useStoreState(state => state.filterObject);
+
   const navigation = useNavigation();
   const city = useStoreState(state => state.city);
   const setCity = useStoreActions(actions => actions.setCity);
-
   const [tabSwitch, setTabSwitch] = useState(true);
+  const [showSortDialog, setShowSortDialog] = useState(false);
+
+  const handleSortView = () => {
+    setShowSortDialog(!showSortDialog);
+  };
+
+  useEffect(() => {}, [filterObject]);
+
   return (
     <View style={{flexDirection: 'column', flex: 1}}>
       <TouchableOpacity
@@ -56,11 +65,17 @@ const TabSwitcher = () => {
         </Text>
       </View>
       <View style={{flex: 1}}>
-        {tabSwitch && <BusinessCards />}
-        {tabSwitch === false && <DealsCards />}
+        {tabSwitch && (
+          <BusinessCards show={showSortDialog} onClose={handleSortView} />
+        )}
+        {tabSwitch === false && (
+          <DealsCards show={showSortDialog} onClose={handleSortView} />
+        )}
       </View>
+      {/* <SortByDialog show={showSortDialog} onClose={handleSortView} /> */}
+
       <View style={styles.filterbtn}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowSortDialog(!showSortDialog)}>
           <Text
             style={{
               color: 'white',
@@ -71,6 +86,10 @@ const TabSwitcher = () => {
               marginVertical: 20,
               marginTop: 0,
             }}>
+            <Image
+              style={styles.homeimg3}
+              source={require('../assets/downarrow.png')}
+            />
             Sort By
           </Text>
         </TouchableOpacity>
@@ -89,7 +108,6 @@ const TabSwitcher = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <SortByDialog />
     </View>
   );
 };

@@ -7,9 +7,7 @@ const Header = props => {
   return (
     <View style={styles.mainHeader}>
       <View style={styles.headermain}>
-        <View
-          style={{flex: 1}}
-          onPress={() => props?.setCondition(!props?.condition)}>
+        <View style={{flex: 1}}>
           <Image
             style={styles.leftarrow}
             source={require('../assets/leftarrow.png')}
@@ -28,8 +26,6 @@ const Header = props => {
         </Text>
         <View style={{flex: 1}}></View>
       </View>
-     
-     
     </View>
   );
 };

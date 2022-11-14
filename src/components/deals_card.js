@@ -4,10 +4,11 @@ import React, {useEffect, useState} from 'react';
 import {ListEmptyView} from './nodatafound';
 import Loader from './loader';
 import {SmallCardDeals} from './small_cards_deals';
+import SortByDialog from '../dialogs/sortby_dialog';
 import axios from 'react-native-axios';
 import {useStoreState} from 'easy-peasy';
 
-const DealsCards = () => {
+const DealsCards = ({show, onClose}) => {
   let filterObject = useStoreState(state => state.filterObject);
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -33,10 +34,11 @@ const DealsCards = () => {
 
   useEffect(() => {
     fetchBusiness();
-  }, [searchQuery]);
+  }, [filterObject, show, onClose]);
 
   return (
     <View style={{flex: 1}}>
+      <SortByDialog show={show} onClose={onClose} />
       {isLoading ? (
         <Loader />
       ) : (
