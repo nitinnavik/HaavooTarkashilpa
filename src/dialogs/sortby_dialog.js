@@ -1,6 +1,6 @@
 import {
+  Dimensions,
   Image,
-  Modal,
   Pressable,
   StyleSheet,
   Text,
@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {useStoreActions, useStoreState} from 'easy-peasy';
+
+import Modal from 'react-native-modal';
 
 const SortByDialog = ({show, onClose}) => {
   const [checkedValue, setCheckedValue] = useState(null);
@@ -20,12 +22,22 @@ const SortByDialog = ({show, onClose}) => {
 
   return (
     <View style={styles.container}>
-      <Modal visible={show} animationType="slide" transparent>
+      <Modal
+        isVisible={show}
+        swipeDirection="down"
+        style={{
+          justifyContent: 'flex-end',
+          margin: 0,
+          marginBottom: 60,
+          height: Dimensions.get('screen').height / 1.5,
+        }}>
         <View
-          style={{
-            position: 'absolute',
-            bottom: 50,
-          }}>
+          style={
+            {
+              // position: 'absolute',
+              // bottom: 50,
+            }
+          }>
           <View style={{minWidth: '100%'}}>
             <Pressable
               onPress={onClose}
