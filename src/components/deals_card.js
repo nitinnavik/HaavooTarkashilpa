@@ -1,28 +1,25 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import { ListEmptyView } from './nodatafound';
+import {ListEmptyView} from './nodatafound';
 import Loader from './loader';
 import {SmallCardDeals} from './small_cards_deals';
 import axios from 'react-native-axios';
-import { useStoreState } from 'easy-peasy';
+import {useStoreState} from 'easy-peasy';
 
 const DealsCards = () => {
+  let filterObject = useStoreState(state => state.filterObject);
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const searchQuery = useStoreState((state) => state.searchQuery);
+  const searchQuery = useStoreState(state => state.searchQuery);
 
   const fetchBusiness = async () => {
-    let url;
-       if(searchQuery === null || searchQuery === ""){
-      url = `https://admin.haavoo.com/api/deals?city=kozhikode&area=&query=&page=1&type=&category=&sort=&pageSize=`;
-    }else{
-           url = `https://admin.haavoo.com/api/deals?city=kozhikode&area=&query=${searchQuery}&page=1&type=&category=&sort=&pageSize=`;
-    }
-    // alert(JSON.stringify(url));
+    let url = `https://admin.haavoo.com/api/deals`;
 
     await axios
-      .get(url)
+      .get(url, {
+        params: filterObject,
+      })
       .then(function (response) {
         // alert(JSON.stringify(response?.data));
         setData(response?.data?.data);
@@ -38,7 +35,6 @@ const DealsCards = () => {
     fetchBusiness();
   }, [searchQuery]);
 
-  
   return (
     <View style={{flex: 1}}>
       {isLoading ? (

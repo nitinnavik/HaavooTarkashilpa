@@ -7,71 +7,42 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import React, {useEffect, useState} from 'react';
+import {useStoreActions, useStoreState} from 'easy-peasy';
 
 import axios from 'react-native-axios';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const SmallCards = props => {
-    return (
-      <View style={styles.cityCard}>
-        <Image
-          style={styles.imageCard}
-          source={require('../assets/ernakulam.png')}
-        />
-        <Text style={{color: 'white'}}>{props.name}</Text>
-      </View>
-    );
-  };
-  
+  return (
+    <View style={styles.cityCard}>
+      <Image
+        style={styles.imageCard}
+        source={require('../assets/ernakulam.png')}
+      />
+      <Text style={{color: 'white'}}>{props.name}</Text>
+    </View>
+  );
+};
+
 const SelectCity = () => {
-  const city = useStoreActions((actions) => actions.city);
-
+  const setBusinessFilterObject = useStoreActions(
+    actions => actions.setBusinessFilterObject,
+  );
+  const filterObject = useStoreState(state => state.filterObject);
+  // alert(JSON.stringify(filterObject));
   const navigation = useNavigation();
-  //  const city = useStoreState((state) => state.city);
-  const setCity = useStoreActions((actions) => actions.setCity);
-  var [citiesArray,setCityArray] = useState();
-        // alert(JSON.stringify(citiesArray));
+  const setCity = useStoreActions(actions => actions.setCity);
+  var [citiesArray, setCityArray] = useState();
 
-  let cardList = [
-    {
-      id: 1,
-      name: 'Ernakulam',
-      src: '../assets/ernakulam.png',
-    },
-    {
-      id: 2,
-      name: 'kozhikode',
-      src: '../assets/ernakulam.png',
-    },
-    {
-      id: 3,
-      name: 'Malappuram',
-      src: '../assets/ernakulam.png',
-    },
-    {
-      id: 4,
-      name: 'Whiruvant Hapuram',
-      src: '../assets/ernakulam.png',
-    },
-    {
-      id: 5,
-      name: 'Thirissur',
-      src: '../assets/ernakulam.png',
-    },
-  ];
-
-
-  
-   const fetchCity = () => {
+  const fetchCity = () => {
     let url = `https://admin.haavoo.com/api/city`;
-     axios
+    axios
       .get(url)
       .then(function (response) {
         // alert(JSON.stringify(response));
-        setCityArray(response?.data?.data)
-        })
+        setCityArray(response?.data?.data);
+      })
       .catch(function (error) {
         alert(error.message);
       });
@@ -86,22 +57,23 @@ const SelectCity = () => {
     <View style={{}}>
       <Text style={styles.mainText}> Popular Cities </Text>
       <View style={styles.mainCard}>
-        { citiesArray&&
+        {citiesArray &&
           citiesArray.map(el => {
-            if(el.is_popular === 1){
+            if (el.is_popular === 1) {
               return (
-              <TouchableOpacity
-                onPress={() => {
-                setCity(el.name)
-                navigation.navigate('MainPage')
-                }}
-                style={styles.cardmaindiv}
-                key={el.id}>
-                <SmallCards name={el.name} src="../assets/ernakulam.png" />
-              </TouchableOpacity>
-            );
+                <TouchableOpacity
+                  onPress={() => {
+                    setCity(el.name);
+                    navigation.navigate('MainPage');
+                    filterObject.city = el?.name;
+                    setBusinessFilterObject(filterObject);
+                  }}
+                  style={styles.cardmaindiv}
+                  key={el.id}>
+                  <SmallCards name={el.name} src="../assets/ernakulam.png" />
+                </TouchableOpacity>
+              );
             }
-            
           })}
       </View>
 
@@ -109,19 +81,23 @@ const SelectCity = () => {
         <Text style={styles.otherCitiesText}> Other Cities </Text>
         {citiesArray?.map((item, key) => (
           <TouchableOpacity
-                onPress={() => {setCity(item?.name)
-                navigation.navigate('MainPage')
-                }}
-                key={key}>
-          <Text key={key} style={styles.TextStyle}>
-            {item?.name}
-          </Text>
+            onPress={() => {
+              setCity(item?.name);
+              navigation.navigate('MainPage');
+              filterObject.city = item?.name;
+              setBusinessFilterObject(filterObject);
+            }}
+            key={key}>
+            <Text key={key} style={styles.TextStyle}>
+              {item?.name}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 };
+
 export default SelectCity;
 
 const styles = StyleSheet.create({

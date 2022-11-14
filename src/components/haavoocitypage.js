@@ -1,18 +1,18 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const HaavooCityPage = props => {
+  const navigation = useNavigation();
   return (
-    <View
-      style={styles.mainHeader}
-      onPress={() => props?.setCondition(!props?.condition)}>
-      <View>
+    <View style={styles.mainHeader}>
+      <TouchableOpacity onPress={() => navigation.navigate('MainPage')}>
         <Image
           style={styles.leftarrow}
           source={require('../assets/leftarrow.png')}
         />
-      </View>
+      </TouchableOpacity>
 
       <Text style={styles.searchText}>Search Your City or Location</Text>
     </View>

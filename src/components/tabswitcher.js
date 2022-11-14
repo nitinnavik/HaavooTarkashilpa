@@ -1,39 +1,46 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import {useStoreActions, useStoreState} from 'easy-peasy';
 
 import BusinessCards from './business_cards';
 import DealsCards from './deals_card';
+import Modal from 'react-native-modal';
 import Search from './search';
-import { useNavigation } from '@react-navigation/native';
+import SortByDialog from '../dialogs/sortby_dialog';
+import {useNavigation} from '@react-navigation/native';
 
 const TabSwitcher = () => {
   const navigation = useNavigation();
-  
-  const city = useStoreState((state) => state.city);
-  const setCity = useStoreActions((actions) => actions.setCity);
- 
+  const city = useStoreState(state => state.city);
+  const setCity = useStoreActions(actions => actions.setCity);
+
   const [tabSwitch, setTabSwitch] = useState(true);
   return (
-    <View style={{flexDirection: 'column', flex: 1}}> 
-    
-       <TouchableOpacity
-       onPress={() => {
-                navigation.navigate('LandingPage', { name: 'Jane' })
-                }}
+    <View style={{flexDirection: 'column', flex: 1}}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('LandingPage', {name: 'Jane'});
+        }}
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: 20,
         }}>
-        <Text style={styles.cityText}>{city}</Text>
+        <Text style={styles.cityText}>{city ? city : 'Select City'}</Text>
         <Image
           style={styles.homeimg3}
           source={require('../assets/downarrow.png')}
         />
       </TouchableOpacity>
-       <View style={{marginVertical: 20, marginHorizontal: 15}}>
+      <View style={{marginVertical: 20, marginHorizontal: 15}}>
         <Search />
       </View>
       <View style={styles.tabsMain}>
@@ -82,6 +89,7 @@ const TabSwitcher = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      <SortByDialog />
     </View>
   );
 };
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 10,
   },
-   cityText: {
+  cityText: {
     fontSize: 18,
     fontWeight: '600',
     color: 'white',

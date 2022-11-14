@@ -1,12 +1,22 @@
-import { Image, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import React,{useState} from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import {
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useState} from 'react';
+import {useStoreActions, useStoreState} from 'easy-peasy';
 
 const Search = () => {
-  const [query,setQuery] = useState('');
-   const searchQuery = useStoreState((state) => state.searchQuery);
-  const setSearchQuery = useStoreActions((actions) => actions.setSearchQuery);
-  
+  const setBusinessFilterObject = useStoreActions(
+    actions => actions.setBusinessFilterObject,
+  );
+  const filterObject = useStoreState(state => state.filterObject);
+  const [query, setQuery] = useState('');
+  const searchQuery = useStoreState(state => state.searchQuery);
+  const setSearchQuery = useStoreActions(actions => actions.setSearchQuery);
+
   return (
     <View style={styles.textInputView}>
       <TextInput
@@ -16,13 +26,18 @@ const Search = () => {
         underlineColor="transparent"
         returnKeyType={'done'}
         selectionColor="black"
-        onChangeText={(text)=>setQuery(text)}
+        onChangeText={text => setQuery(text)}
       />
-      <TouchableOpacity onPress={()=>setSearchQuery(query)}>
-      <Image
-        style={styles.searchIcon}
-        source={require('../assets/search-icon.png')}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          setSearchQuery(query);
+          filterObject.search_query = query;
+          setBusinessFilterObject(filterObject);
+        }}>
+        <Image
+          style={styles.searchIcon}
+          source={require('../assets/search-icon.png')}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -35,7 +50,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     // width: 20,
     // height: 20,
-   marginTop:10
+    marginTop: 10,
   },
   textInputView: {
     borderWidth: 1,

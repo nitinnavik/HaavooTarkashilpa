@@ -1,7 +1,7 @@
-import { action, createStore } from "easy-peasy";
+import {action, createStore} from 'easy-peasy';
 
 const Store = createStore({
-  city:'',
+  city: '',
   setCity: action((state, payload) => {
     // alert(payload)
     return {
@@ -17,6 +17,21 @@ const Store = createStore({
       searchQuery: payload,
     };
   }),
-  
+  filterObject: {
+    city: '',
+    area: '',
+    search_query: '',
+    page: '',
+    type: '',
+    category: '',
+    sort: '',
+  },
+  setBusinessFilterObject: action((state, payload) => {
+    // alert(JSON.stringify(payload))
+    return {
+      ...state,
+      filterObject: payload,
+    };
+  }),
 });
-export default Store
+export default Store;
