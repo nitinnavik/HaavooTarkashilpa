@@ -2,13 +2,14 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useStoreActions, useStoreState} from 'easy-peasy';
 
+import FilterDialog from '../dialogs/filter_dialog';
 import {ListEmptyView} from './nodatafound';
 import Loader from './loader';
 import {SmallCardBusiness} from './small_cards_business';
 import SortByDialog from '../dialogs/sortby_dialog';
 import axios from 'react-native-axios';
 
-const BusinessCards = ({show, onClose}) => {
+const BusinessCards = ({show, onClose, showFilter, setShowFilter}) => {
   let filterObject = useStoreState(state => state.filterObject);
   // alert(JSON.stringify(filterObject));
   let city = useStoreActions(actions => actions.city);
@@ -18,10 +19,6 @@ const BusinessCards = ({show, onClose}) => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const searchQuery = useStoreState(state => state.searchQuery);
-  const [showSortDialog, setShowSortDialog] = useState(false);
-  const handleSortView = () => {
-    setShowSortDialog(!showSortDialog);
-  };
 
   //  alert(JSON.stringify(searchQuery))
   const fetchBusiness = async () => {
@@ -42,6 +39,10 @@ const BusinessCards = ({show, onClose}) => {
   };
   // alert(JSON.stringify(data));
 
+  const handleFilterClose = () => {
+    setShowFilter(!showFilter);
+  };
+
   useEffect(() => {
     fetchBusiness();
   }, [filterObject, show, onClose]);
@@ -49,6 +50,7 @@ const BusinessCards = ({show, onClose}) => {
   return (
     <View style={{flex: 1}}>
       <SortByDialog show={show} onClose={onClose} />
+      <FilterDialog show={showFilter} onClose={handleFilterClose} />
       {isLoading ? (
         <Loader />
       ) : (

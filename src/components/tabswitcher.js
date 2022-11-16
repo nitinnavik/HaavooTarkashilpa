@@ -24,6 +24,7 @@ const TabSwitcher = () => {
   const setCity = useStoreActions(actions => actions.setCity);
   const [tabSwitch, setTabSwitch] = useState(true);
   const [showSortDialog, setShowSortDialog] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
 
   const handleSortView = () => {
     setShowSortDialog(!showSortDialog);
@@ -66,10 +67,20 @@ const TabSwitcher = () => {
       </View>
       <View style={{flex: 1}}>
         {tabSwitch && (
-          <BusinessCards show={showSortDialog} onClose={handleSortView} />
+          <BusinessCards
+            show={showSortDialog}
+            onClose={handleSortView}
+            showFilter={showFilter}
+            setShowFilter={setShowFilter}
+          />
         )}
         {tabSwitch === false && (
-          <DealsCards show={showSortDialog} onClose={handleSortView} />
+          <DealsCards
+            show={showSortDialog}
+            onClose={handleSortView}
+            showFilter={showFilter}
+            setShowFilter={setShowFilter}
+          />
         )}
       </View>
       {/* <SortByDialog show={showSortDialog} onClose={handleSortView} /> */}
@@ -86,14 +97,10 @@ const TabSwitcher = () => {
               marginVertical: 20,
               marginTop: 0,
             }}>
-            <Image
-              style={styles.homeimg3}
-              source={require('../assets/downarrow.png')}
-            />
-            Sort By
+            <Text style={{fontSize: 22, fontWeight: 'bold'}}>↕</Text> Sort By
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
           <Text
             style={{
               color: 'white',

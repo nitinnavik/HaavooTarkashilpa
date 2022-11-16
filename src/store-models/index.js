@@ -23,7 +23,7 @@ const Store = createStore({
     search_query: '',
     page: '',
     type: '',
-    category: '',
+    category: [],
     sort: '',
   },
   setBusinessFilterObject: action((state, payload) => {
